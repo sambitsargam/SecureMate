@@ -44,7 +44,7 @@ const authContextDefaultValues: authContextType = {
   logout: () => {},
 };
 // 1. Get projectId
-const projectId = 'bbd04f1c052343db95c2aaaa53302ca7'
+const projectId = '536d26743c83b4e06ec7f8602883ce23'
 
 // 2. Set chains
 const mainnet = {
