@@ -22,6 +22,8 @@ import CTA from "../components/CTA";
 import {} from "@windmill/react-ui";
 import PONK from "../assets/img/irupus.png";
 import { ellipseAddress } from "../lib/utilities";
+import { IDKitWidget } from '@worldcoin/idkit';
+
 function Buttons() {
   const { address, signer, connect } = useContext(AuthContext);
   const [visible, setVisible] = React.useState(false);
@@ -63,6 +65,16 @@ function Buttons() {
       setusers(usersWithENSNames);
     }
   }
+
+  // function to enable a button 
+  // function to enable a button 
+function enableButton() {
+  const chatButton = document.getElementById("chat");
+  if (chatButton) {
+    chatButton.removeAttribute("disabled");
+  }
+}
+
 
   async function isUserRegistered() {
     const data = await signer?.isRegistered();
@@ -314,6 +326,18 @@ function Buttons() {
         </Modal.Footer>
       </Modal>
       <PageTitle>Available Profiles</PageTitle>
+      <IDKitWidget
+  app_id="app_staging_820778815cfb1ce281fbb271f61e6cd1"
+  action="vote_1"
+  signal="user_value"
+  onSuccess={enableButton} // use the function reference without calling it
+  credential_types={['orb', 'phone']}
+  enableTelemetry
+>
+  {({ open }) => <Button onClick={open}>Verify with World ID to Chat</Button>}
+</IDKitWidget>
+<br></br>
+
 
       <form className="mb-4">
         <label
@@ -412,6 +436,8 @@ function Buttons() {
                       onChatUser(user._address);
                       setuserid(user.id.toString());
                     }}
+                    id="chat"
+                    disabled
                   >
                     Chat
                   </button>

@@ -21,6 +21,7 @@
     "@walletconnect/web3-provider": "^1.8.0",
     "@web3modal/ethers5": "^3.3.2",
     "@windmill/react-ui": "0.3.1",
+    "@worldcoin/idkit": "^0.5.1",
     "avataaars": "^2.0.0",
     "axios": "^0.26.1",
     "babel-loader": "^8.2.5",
