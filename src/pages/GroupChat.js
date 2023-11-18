@@ -7,7 +7,7 @@ const Group = () => {
         title="Embedded Group Chat"
         src="https://group-chat-liart.vercel.app/"
         width="100%"
-        height="800px"
+        height="600px"
         frameBorder="0"
         scrolling="auto"
       ></iframe>

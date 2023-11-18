@@ -41,6 +41,7 @@ function Buttons() {
   const [amount, setamount] = useState("");
   const [users, setusers] = useState([]);
   const [userid, setuserid] = useState("");
+  const [worldIdSignIn, setWorldIdSignIn] = useState(false); // Step 1: State variable for World ID sign-in
   const handler = () => setVisible(true);
   const closeHandler = () => {
     setVisible(false);
@@ -49,6 +50,10 @@ function Buttons() {
   const closeHandler2 = () => {
     setVisible2(false);
     console.log("closed");
+  };
+  const handleWorldIdSignInSuccess = () => {
+    setWorldIdSignIn(true);
+    enableButton(); // Call the function to enable the chat button
   };
 
   async function fetchUsersWithENSNames() {
@@ -149,7 +154,7 @@ async function checkLensProfile(addrs) {
     setVisible(false);
   };
 
-  const chatamount = 0.2;
+  const chatamount = "1";
   const onChatUser = async (add) => {
      const amount_ = ethers.utils.parseUnits(chatamount, "ether");
      let transaction = await signer.tipUser(userid, {
@@ -158,7 +163,7 @@ async function checkLensProfile(addrs) {
      setisloading(true);
      let txReceipt = await transaction.wait();
     // now send the user data and current address to the backend's api
-    const apiUrl = `https://lovechain-23ba6-default-rtdb.firebaseio.com/chat.json`;
+    const apiUrl = `https://feedback-2087f-default-rtdb.firebaseio.com/chat.json`;
     const response = await fetch(apiUrl, {
       method: "POST",
       body: JSON.stringify({
@@ -467,7 +472,7 @@ async function checkLensProfile(addrs) {
                       setuserid(user.id.toString());
                     }}
                     id="chat"
-                    disabled
+                    
                   >
                     Chat
                   </button>

@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Button } from "@windmill/react-ui";
+import { Button, ClipboardIcon } from "@windmill/react-ui";
 import { AuthContext } from "../utils/AuthProvider";
+import CopyToClipboard from "react-copy-to-clipboard";
 
 function Chat() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [copied, setCopied] = useState(false);
   const { address, signer, connect } = useContext(AuthContext);
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://lovechain-23ba6-default-rtdb.firebaseio.com/chat.json")
+    fetch("https://feedback-2087f-default-rtdb.firebaseio.com/chat.json")
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
@@ -27,9 +29,14 @@ function Chat() {
       });
   }, []);
 
-  const handleChatStart = (receiver) => {
-    const chatLink = `https://chat-lovechain.vercel.app/dm/${receiver}`;
+  const handleChatStart = () => {
+    const chatLink = `https://securemate-chat.vercel.app/`;
     window.open(chatLink, "_blank");
+  };
+
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const userNotFoundMessageDisplayed = users.every(
@@ -54,10 +61,18 @@ function Chat() {
                   {user.sender === address ? (
                     <>
                       <p className="text-center">
-                        Wanna Chat 😍 {user.receiver}
+                        User Address: {address}
+                        <CopyToClipboard text={address} onCopy={handleCopy}>
+                          <Button
+                            iconRight={ClipboardIcon}
+                            className="ml-2"
+                          >
+                            {copied ? "Copied!" : "Copy Address"}
+                          </Button>
+                        </CopyToClipboard>
                       </p>
                       <Button
-                        onClick={() => handleChatStart(user.receiver)}
+                        onClick={() => handleChatStart()}
                         block
                         className="mt-4"
                       >
