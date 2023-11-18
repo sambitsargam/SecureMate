@@ -8,7 +8,7 @@ import  React, {
 // import { useRouter } from 'next/router';
  // import WalletConnectProvider from '@walletconnect/web3-provider';
 import { ethers, providers } from 'ethers';
-import { AvaAddress, ArbAddress } from '../config';
+import { MntAddress, ArbAddress ,GnoAddress ,ChzAddress ,ScrAddress ,NeonAddress, LinAddress} from '../config';
 import WalletLink from 'walletlink';
 import SecureMate from "./SecureMate.json";
 import Web3Modal from 'web3modal';
@@ -205,14 +205,30 @@ const AuthProvider = ({ children }) => {
     let contractAddress: string;
     let rpcUrl: string | ethers.utils.ConnectionInfo | undefined;
   
-    if (network.chainId === 43113) {
-
-      contractAddress = AvaAddress;
-      rpcUrl = 'https://api.avax-test.network/ext/bc/C/rpc';
-    } else {
+    if (network.chainId === 534351) {
+      contractAddress = ScrAddress;
+      rpcUrl = 'https://sepolia-rpc.scroll.io';
+    } else if (network.chainId === 5001) {
+      contractAddress = MntAddress;
+      rpcUrl = 'https://rpc.testnet.mantle.xyz';
+    } else if (network.chainId === 245022926) {
+      contractAddress = NeonAddress;
+      rpcUrl = 'https://devnet.neonevm.org';
+    } else if (network.chainId === 10200) {
+      contractAddress = GnoAddress;
+      rpcUrl = 'https://rpc.chiadochain.net';
+    } else if (network.chainId === 88882) {
+      contractAddress = ChzAddress;
+      rpcUrl = 'https://spicy-rpc.chiliz.com/';
+    } else if (network.chainId === 421611) {
       contractAddress = ArbAddress;
-      rpcUrl = 'https://goerli-rollup.arbitrum.io/rpc';
+      rpcUrl = 'https://arb1.arbitrum.io/rpc';
+    } else {
+      contractAddress = LinAddress;
+      rpcUrl = 'https://rpc.goerli.linea.build';
     }
+      
+
   
     // Create a generic provider and query for unsold market items
     const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
@@ -333,9 +349,11 @@ const AuthProvider = ({ children }) => {
         });
       };
 
+      
+
       const signer_ = web3Provider.getSigner();
       const signer = new ethers.Contract(
-        AvaAddress,
+        contract.address,
         SecureMate.abi,
         signer_
       );
