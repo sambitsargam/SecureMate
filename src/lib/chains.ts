@@ -146,6 +146,22 @@ const supportedChains: IChainData[] = [
     },
   },
   {
+    name: "Chiliz Chain",
+    short_name: "ChilizM",
+    chain: "Chiliz",
+    network: "Chiliz",
+    chain_id: 88888,
+    network_id: 88888,
+    rpc_url: "https://rpc.ankr.com/chiliz",
+    native_currency: {
+      symbol: "CHZ",
+      name: "chz",
+      decimals: "18",
+      contractAddress: "",
+      balance: "",
+    },
+  },
+  {
     name: "Avalanche Fuji Testnet",
     short_name: "ava",
     chain: "AVAX",

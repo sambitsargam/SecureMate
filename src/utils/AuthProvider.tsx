@@ -8,7 +8,7 @@ import  React, {
 // import { useRouter } from 'next/router';
  // import WalletConnectProvider from '@walletconnect/web3-provider';
 import { ethers, providers } from 'ethers';
-import { MntAddress, ArbAddress ,GnoAddress ,ChzAddress ,ScrAddress ,NeonAddress, LinAddress} from '../config';
+import { MntAddress, ArbAddress ,GnoAddress ,ChzMAddress,ChzAddress ,ScrAddress ,NeonAddress, LinAddress} from '../config';
 import WalletLink from 'walletlink';
 import SecureMate from "./SecureMate.json";
 import Web3Modal from 'web3modal';
@@ -260,6 +260,9 @@ const AuthProvider = ({ children }) => {
     } else if (network.chainId === 421613) {
       contractAddress = ArbAddress;
       rpcUrl = 'https://arbitrum-goerli.publicnode.com';
+    } else if (network.chainId === 88888) {
+      contractAddress = ChzMAddress;
+      rpcUrl = 'https://rpc.ankr.com/chiliz';
     } else {
       contractAddress = LinAddress;
       rpcUrl = 'https://rpc.goerli.linea.build';

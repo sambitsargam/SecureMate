@@ -5,3 +5,4 @@ export const ChzAddress = "0x30B962f22A7C8D9f980fEc3670dbb44dc17B5BcB";
 export const ScrAddress = "0x375F30575f60b3473496a978ad7C04dF94B0ECD4";
 export const NeonAddress = "0x30B962f22A7C8D9f980fEc3670dbb44dc17B5BcB";
 export const LinAddress = "0x30B962f22A7C8D9f980fEc3670dbb44dc17B5BcB";
+export const ChzMAddress = "0x8628d91E8311B4856ae7d3E317a0E8fFf48E0f98";
