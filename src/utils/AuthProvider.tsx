@@ -14,6 +14,8 @@ import SecureMate from "./SecureMate.json";
 import Web3Modal from 'web3modal';
 import {  getChainData } from '../lib/utilities';
 import { useSDK } from '@metamask/sdk-react';
+import { createWeb3Modal, defaultConfig } from '@web3modal/ethers5/react'
+
 
 //write a type for status and user
 type authContextType = {
@@ -41,6 +43,38 @@ const authContextDefaultValues: authContextType = {
   disconnect: null as any,
   logout: () => {},
 };
+// 1. Get projectId
+const projectId = 'bbd04f1c052343db95c2aaaa53302ca7'
+
+// 2. Set chains
+const mainnet = {
+  chainId: 1,
+  name: 'Ethereum',
+  currency: 'ETH',
+  explorerUrl: 'https://etherscan.io',
+  rpcUrl: 'https://cloudflare-eth.com'
+}
+
+// 3. Create modal
+const metadata = {
+  name: 'SecureMate',
+  description: 'SecureMate is a decentralized Dating application .',
+  url: 'https://securemate.vercel.app',
+  icons: ['https://avatars.mywebsite.com/']
+}
+
+createWeb3Modal({
+  ethersConfig: defaultConfig({ 
+    metadata,
+    defaultChainId: 1,
+    enableEIP6963: true,
+    enableInjected: true,
+    enableCoinbase: true,
+    rpcUrl: '...' // used for the Coinbase SDK
+  }),
+  chains: [mainnet],
+  projectId
+})
 
 export const AuthContext = createContext<authContextType>(
   authContextDefaultValues
