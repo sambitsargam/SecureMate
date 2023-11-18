@@ -7,6 +7,8 @@ import ThemedSuspense from "./components/ThemedSuspense";
 import { Windmill } from "@windmill/react-ui";
 import * as serviceWorker from "./serviceWorker";
 import AuthProvider from "./utils/AuthProvider";
+import { MetaMaskUIProvider } from '@metamask/sdk-react-ui';
+
 
 // if (process.env.NODE_ENV !== 'production') {
 //   const axe = require('react-axe')
@@ -15,16 +17,21 @@ import AuthProvider from "./utils/AuthProvider";
 
 // lets create for avalanche fuji
 
- 
+
 ReactDOM.render(
   // <ThemeProvider attribute="class">
   <SidebarProvider>
     <Suspense fallback={<ThemedSuspense />}>
       <Windmill usePreferences>
-        <AuthProvider>
-         
+        <MetaMaskUIProvider sdkOptions={{
+          dappMetadata: {
+            name: "SecureMate",
+          }
+        }}>
+          <AuthProvider>
             <App />
-        </AuthProvider>  
+          </AuthProvider>
+        </MetaMaskUIProvider>
       </Windmill>
     </Suspense>
   </SidebarProvider>,

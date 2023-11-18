@@ -13,6 +13,7 @@ import WalletLink from 'walletlink';
 import SecureMate from "./SecureMate.json";
 import Web3Modal from 'web3modal';
 import {  getChainData } from '../lib/utilities';
+import { useSDK } from '@metamask/sdk-react';
 
 //write a type for status and user
 type authContextType = {
@@ -196,6 +197,8 @@ const AuthProvider = ({ children }) => {
     chainId,
     ethprice,
   } = state;
+  const { sdk, connected, connecting } = useSDK();
+
 
   async function loadContracts() {
     const providerss = await web3Modal.connect();
@@ -254,6 +257,8 @@ const AuthProvider = ({ children }) => {
   
 
   const connect = useCallback(async function () {
+  //  const accounts = await sdk?.connect();
+  //  console.log(accounts);
     const provider = await web3Modal.connect();
     const web3Provider = new providers.Web3Provider(provider);
     const signer = web3Provider.getSigner() as any;
@@ -312,7 +317,7 @@ const AuthProvider = ({ children }) => {
 
       const signer_ = web3Provider.getSigner();
       const signer = new ethers.Contract(
-        ScrAddress,
+        MntAddress,
         SecureMate.abi,
         signer_
       );

@@ -6,6 +6,7 @@ import { AuthContext } from "../utils/AuthProvider";
 import { Button } from "@nextui-org/react";
 import { SearchIcon, MoonIcon, SunIcon, MenuIcon } from "../icons";
 import { Input, WindmillContext } from "@windmill/react-ui";
+import { MetaMaskButton } from "@metamask/sdk-react-ui";
 
 function Header() {
   const { mode, toggleMode } = useContext(WindmillContext);
@@ -122,6 +123,9 @@ function Header() {
             )}
 
             
+          </li>
+          <li className="flex flex-row items-center">
+          <MetaMaskButton theme={"light"} color="white"></MetaMaskButton>
           </li>
         </ul>
       </div>
