@@ -23,6 +23,8 @@ import {} from "@windmill/react-ui";
 import PONK from "../assets/img/irupus.png";
 import { ellipseAddress } from "../lib/utilities";
 import { IDKitWidget } from '@worldcoin/idkit';
+import { async } from "q";
+import lens from "../icons/lens.svg";
 
 function Buttons() {
   const { address, signer, connect } = useContext(AuthContext);
@@ -56,15 +58,20 @@ function Buttons() {
       const usersWithENSNames = await Promise.all(
         data.map(async (user) => {
           const ensName = await getENSName(user._address);
+          const hasLensProfile = await checkLensProfile(user._address);
+          console.log(hasLensProfile);
           return {
             ...user,
             ensName: ensName,
+            hasLensProfile: hasLensProfile,
           };
         })
       );
       setusers(usersWithENSNames);
     }
   }
+
+
 
   // function to enable a button 
   // function to enable a button 
@@ -107,6 +114,12 @@ function enableButton() {
     const data = await response.json();
     return data;
   }
+
+  // check the user have lens profile or not 
+async function checkLensProfile(addrs) {
+  const userDetails = await getDetails(addrs);
+  return userDetails.platform.toLowerCase() === "lens";
+}
 
 
   const onAddProfile = async () => {
@@ -311,7 +324,7 @@ function enableButton() {
             onChange={(e) => {
               setamount(e.target.value);
             }}
-            placeholder="Enter amount(avax)"
+            placeholder="Enter amount(MNT)"
           />
         </Modal.Body>
         <Modal.Footer>
@@ -413,6 +426,15 @@ function enableButton() {
                     />
                   </div>
                 )}
+                {user.hasLensProfile && (
+                  <div className="flex items-center ml-3">
+                    <img
+                      src={lens}
+                      className="w-8 h-8 transform scale-180"
+                      alt="Verified Badge"
+                    />
+                  </div>
+                )}
               </h5>
 
               <p className="mt-2 text-sm text-gray-500 dark:text-gray-200">
@@ -452,7 +474,7 @@ function enableButton() {
                 </li>
               </ul>
               <p className="mt-2 text-sm text-gray-500 dark:text-gray-200">
-                {ethers.utils.formatEther(user.balance.toString())} AVAX
+                {ethers.utils.formatEther(user.balance.toString())} MNT
               </p>
             </div>
           </div>
