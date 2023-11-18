@@ -34,14 +34,14 @@ const contentTypeConfigs = [
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet],
   [
-    infuraProvider({ apiKey: import.meta.env.VITE_INFURA_ID ?? "" }),
+    infuraProvider({ apiKey: "bbd04f1c052343db95c2aaaa53302ca7" }),
     publicProvider(),
   ],
-);
+); 
 
 // Required field as of WalletConnect v2.
 // Replace with your project id: https://www.rainbowkit.com/docs/migration-guide#2-supply-a-walletconnect-cloud-projectid
-const projectId = import.meta.env.VITE_PROJECT_ID || "ADD_PROJECT_ID_HERE";
+const projectId = "536d26743c83b4e06ec7f8602883ce23";
 const appName = "XMTP Inbox Web";
 
 const { wallets } = getDefaultWallets({

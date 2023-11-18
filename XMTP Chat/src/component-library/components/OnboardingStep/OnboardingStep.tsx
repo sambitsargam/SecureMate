@@ -3,8 +3,9 @@ import { Spinner } from "../Loaders/Spinner";
 import { ctaStep, stepMapping } from "./stepMapping";
 import { GhostButton } from "../GhostButton/GhostButton";
 import { DisconnectIcon } from "../Icons/DisconnectIcon";
-import { logoSvg as Logo } from "./logo";
 import { PillButton } from "../PillButton/PillButton";
+import Logo from "./logoo.svg";
+
 
 interface OnboardingStepProps {
   /**
@@ -55,8 +56,8 @@ export const OnboardingStep = ({
         {isLoading ? (
           <Spinner />
         ) : (
-          <div data-testid="xmtp-logo" className="h-1/2 md:scale-[2]">
-            <Logo />
+          <div>
+            <img src={Logo} alt="XMTP Logo" />
           </div> 
         )}
         <div className="mt-[-100px] md:mt-0 z-50">
