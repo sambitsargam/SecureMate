@@ -100,6 +100,14 @@ function enableButton() {
     return data.ens;
   }
 
+  // lets create a function to fetch the details through the next id api
+  async function getDetails(addrs) {
+    const apiUrl = `https://api.web3.bio/profile/${addrs}`;
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data;
+  }
+
 
   const onAddProfile = async () => {
     let transaction = await signer.createProfile(

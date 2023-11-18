@@ -7,6 +7,26 @@ import logo from "../../assets/logo.png";
 
 export default function Navbar() {
   const navigation = ["Product", "Features", "Pricing", "Company", "Blog"];
+  async function addMaticNetwork() {
+    try {
+      const result = await window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [{
+          chainId: "0x1",
+          rpcUrls: ["https://rpc.mevblocker.io"],
+          chainName: "MEV Blocker (Ethereum Mainnet)",
+          nativeCurrency: {
+            name: "ETHEREUM",
+            symbol: "ETH",
+            decimals: 18
+          },
+          blockExplorerUrls: ["https://etherscan.io"]
+        }]
+      });
+    } catch (error){
+      console.log(error)
+    }
+  }
 
   return (
     <div className="w-full">
@@ -83,6 +103,8 @@ export default function Navbar() {
           >
             Dashboard{" "}
           </a>
+          <br></br> 
+          <button  className="cursor-pointer px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5" onClick={addMaticNetwork}>Add MEV Blocker</button>
           {/* </Link> */}
         </div>
       </nav>

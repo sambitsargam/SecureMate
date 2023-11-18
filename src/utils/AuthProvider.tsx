@@ -47,12 +47,12 @@ const authContextDefaultValues: authContextType = {
 const projectId = '536d26743c83b4e06ec7f8602883ce23'
 
 // 2. Set chains
-const mainnet = {
-  chainId: 1,
-  name: 'Ethereum',
-  currency: 'ETH',
+const mantle = {
+  chainId: 5001,
+  name: 'Mantle',
+  currency: 'MNT',
   explorerUrl: 'https://etherscan.io',
-  rpcUrl: 'https://cloudflare-eth.com'
+  rpcUrl: 'https://explorer.testnet.mantle.xyz/'
 }
 
 // 3. Create modal
@@ -66,13 +66,13 @@ const metadata = {
 createWeb3Modal({
   ethersConfig: defaultConfig({ 
     metadata,
-    defaultChainId: 1,
+    defaultChainId: 5001,
     enableEIP6963: true,
     enableInjected: true,
     enableCoinbase: true,
     rpcUrl: '...' // used for the Coinbase SDK
   }),
-  chains: [mainnet],
+  chains: [mantle],
   projectId
 })
 
