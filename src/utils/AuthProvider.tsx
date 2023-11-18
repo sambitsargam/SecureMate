@@ -220,9 +220,9 @@ const AuthProvider = ({ children }) => {
     } else if (network.chainId === 88882) {
       contractAddress = ChzAddress;
       rpcUrl = 'https://spicy-rpc.chiliz.com/';
-    } else if (network.chainId === 421611) {
+    } else if (network.chainId === 421613) {
       contractAddress = ArbAddress;
-      rpcUrl = 'https://arb1.arbitrum.io/rpc';
+      rpcUrl = 'https://arbitrum-goerli.publicnode.com';
     } else {
       contractAddress = LinAddress;
       rpcUrl = 'https://rpc.goerli.linea.build';
@@ -262,47 +262,6 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem('address', address);
     const network = (await web3Provider.getNetwork()) as any;
       
-
-  //   if (network.chainId === 43113 || network.chainId === 421613) {
-  //       // const ssx = new SSX({
-  //       //   resolveEns: {
-  //       //     resolveOnServer: false, // false as default
-  //       //     resolve: {
-  //       //       domain: true,
-  //       //       avatar: true
-  //       //     }
-  //       //   }
-  //       // });
-  //     } else {
-  //     const customChainConfig = {
-  //       chainId: "0xa869", // Chain ID of Avalanche Fuji Testnet
-  //       chainName: "Avalanche Fuji Testnet",
-  //       nativeCurrency: {
-  //         name: "avalanche",
-  //         symbol: "AVAX",
-  //         decimals: 18,
-  //       },
-  //       rpcUrls: ["https://rpc.ankr.com/avalanche_fuji"],
-  //       blockExplorerUrls: ["https://testnet.snowtrace.io/"],
-  //     };
-
-  //     try {
-  //       // Attempt to switch to the custom Avalanche network
-  //       await web3Provider.send("wallet_switchEthereumChain", [
-  //         {
-  //           chainId: customChainConfig.chainId,
-  //         },
-  //       ]);
-  //       alert('Switched to Avalanche testnet... Please  Reconnect');
-  //    window.location.reload();
-  //     } catch (switchError) {
-  //       // If switching network failed, add the custom network
-  //       await web3Provider.send("wallet_addEthereumChain", [customChainConfig]);
-  //       window.location.reload();
-  //       alert('Added to Avalanche testnet... Please  Reconnect');
-
-
-
 
     dispatch({
       type: 'SET_WEB3_PROVIDER',
@@ -353,7 +312,7 @@ const AuthProvider = ({ children }) => {
 
       const signer_ = web3Provider.getSigner();
       const signer = new ethers.Contract(
-        contract.address,
+        ScrAddress,
         SecureMate.abi,
         signer_
       );

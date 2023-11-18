@@ -168,9 +168,9 @@ const supportedChains: IChainData[] = [
     short_name: "ark",
     chain: "ETH",
     network: "arbitrum",
-    chain_id: 421611,
-    network_id: 421611,
-    rpc_url: "https://arb1.arbitrum.io/rpc",
+    chain_id: 421613,
+    network_id: 421613,
+    rpc_url: "https://api.zan.top/node/v1/arb/goerli/public",
     native_currency: {
       symbol: "ETH",
       name: "Ethereum",
