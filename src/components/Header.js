@@ -74,7 +74,7 @@ function Header() {
           {avatar === undefined || !address ? (
               <img
                 class=" hidden md:block  w-10 h-10 rounded-full shadow-lg"
-                src={"https://api.dicebear.com/6.x/personas/svg?seed=Misty"}
+                src={"https://noun-api.com/beta/pfp"}
                 alt="Bonnie image"
               />
             ) : (
