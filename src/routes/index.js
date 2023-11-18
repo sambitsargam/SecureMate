@@ -10,6 +10,7 @@ const Resell = lazy(() => import("../pages/Resell"));
 const NFTDashboard = lazy(() => import("../pages/NFTDashboard"));
 const Page404 = lazy(() => import("../pages/404"));
 const Blank = lazy(() => import("../pages/Blank"));
+const Group = lazy(() => import("../pages/GroupChat"));
 /**
  * ⚠ These are internal routes!
  * They will be rendered inside the app, using the default `containers/Layout`.
@@ -36,6 +37,10 @@ const routes = [
   {
     path: "/chat",
     component: Chats,
+  },
+  {
+    path: "/groupchat",
+    component: Group,
   },
   {
     path: "/nft",

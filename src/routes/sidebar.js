@@ -14,6 +14,7 @@ import {
   ServerStackIcon,
   UserGroupIcon,
   ChatBubbleLeftRightIcon,
+  ChatBubbleLeftEllipsisIcon,
   SparklesIcon,
 } from "@heroicons/react/24/outline";
 const routes = [
@@ -29,14 +30,14 @@ const routes = [
   // },
 
   {
-    path: "/app/storage",
+    path: "/app/gallery",
     icon: <ServerStackIcon className="h-6" />,
-    name: " Storage",
+    name: "Gallery",
   },
   {
-    path: "/app/finance",
+    path: "/app/groupchat",
     icon: <UserGroupIcon className="h-6" />,
-    name: "Finance",
+    name: "Group Chat",
   },
   {
     path: "/app/chat",
