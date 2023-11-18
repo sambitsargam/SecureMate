@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // import Link from "next/link";
 import ThemeChanger from "./DarkSwitch";
 import { Disclosure } from "@headlessui/react";
-import logo from "../../public/img/productify-logo.svg";
+import logo from "../../assets/logo.png";
 
 export default function Navbar() {
   const navigation = ["Product", "Features", "Pricing", "Company", "Blog"];
@@ -25,7 +27,7 @@ export default function Navbar() {
                       className="w-8"
                     />
                   </span>
-                  <span>Destore</span>
+                  <span>SecureMate</span>
                 </a>
                 {/* </Link> */}
 

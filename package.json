@@ -1,27 +1,23 @@
 {
-  "name": "destore",
+  "name": "securemate",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.19.0",
     "@babel/preset-env": "^7.19.0",
     "@babel/preset-react": "^7.18.6",
-    "@chainlink/contracts": "^0.4.1",
     "@headlessui/react": "^1.7.0",
     "@heroicons/react": "^2.0.10",
     "@material-tailwind/react": "^1.0.6",
     "@nextui-org/react": "^1.0.0-beta.10",
-    "@nomiclabs/hardhat-ethers": "^2.0.5",
-    "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@openzeppelin/contracts": "^4.5.0",
     "@ramonak/react-progress-bar": "^4.4.0",
     "@react-google-maps/api": "^2.8.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@walletconnect/web3-provider": "^1.7.8",
+    "@walletconnect/web3-provider": "^1.8.0",
     "@windmill/react-ui": "0.3.1",
-    "aos": "^2.3.4",
     "avataaars": "^2.0.0",
     "axios": "^0.26.1",
     "babel-loader": "^8.2.5",
@@ -35,17 +31,11 @@
     "dateformat": "^5.0.3",
     "ethereum-waffle": "^3.4.4",
     "ethers": "5.7.0",
-    "evmosjs": "^0.2.9",
     "faker": "4.1.0",
     "file-loader": "^6.2.0",
     "form-data": "^4.0.0",
-    "giticon": "^1.0.8",
-    "hardhat": "^2.15.0",
-    "hardhat-contract-sizer": "^2.6.1",
     "html-webpack-plugin": "^5.5.0",
     "install": "^0.13.0",
-    "ipfs-http-client": "^56.0.2",
-    "moralis": "1.11.0",
     "next-themes": "^0.2.1",
     "picmo": "^5.6.3",
     "pretty-bytes": "^6.0.0",
@@ -71,6 +61,7 @@
     "tslint": "^6.1.3",
     "typed.js": "^2.0.12",
     "walletlink": "^2.5.0",
+    "warp-contracts": "^1.4.15",
     "web-vitals": "^2.1.4",
     "web3": "^1.7.3",
     "web3.storage": "^4.4.0",
@@ -127,6 +118,25 @@
     "tailwind",
     "react"
   ],
+  "release-it": {
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

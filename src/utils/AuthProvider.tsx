@@ -1,25 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import  React, {
-  useState,
   createContext,
   useEffect,
   useCallback,
   useReducer,
 } from 'react';
 // import { useRouter } from 'next/router';
-import WalletConnectProvider from '@walletconnect/web3-provider';
+ // import WalletConnectProvider from '@walletconnect/web3-provider';
 import { ethers, providers } from 'ethers';
-import { destoreAddress } from '../config';
-import axios from 'axios';
+import { AvaAddress, ArbAddress } from '../config';
 import WalletLink from 'walletlink';
-// import donationContract from './fakeabi.json';
-import destoreContract from "./Destore.json";
+import SecureMate from "./SecureMate.json";
 import Web3Modal from 'web3modal';
-import { ellipseAddress, getChainData } from '../lib/utilities';
+import {  getChainData } from '../lib/utilities';
 
 //write a type for status and user
 type authContextType = {
   provider?: any;
-  signer?: any;
+  signer?: any;  
   web3Provider?: any;
   contract?: any;
   address?: string;
@@ -47,15 +45,15 @@ export const AuthContext = createContext<authContextType>(
   authContextDefaultValues
   );
   
-  const INFURA_ID = '460f40a260564ac4a4f4b3fffb032dad';
+const INFURA_ID = 'bbd04f1c052343db95c2aaaa53302ca7';
 
 const providerOptions = {
-  walletconnect: {
-    package: WalletConnectProvider, // required
-    options: {
-      infuraId: INFURA_ID, // required
-    },
-  },
+//    walletconnect: {
+//     package: WalletConnectProvider, // required
+//    options: {
+//       infuraId: INFURA_ID, // required
+//     },
+//  },
 
   'custom-walletlink': {
     display: {
@@ -193,63 +191,102 @@ const AuthProvider = ({ children }) => {
     provider,
     web3Provider,
     contract,
-    signer,
+    signer, 
     address,
     chainId,
     ethprice,
   } = state;
 
   async function loadContracts() {
-    /* create a generic provider and query for unsold market items */
-    // const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
-    const provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com');
-    // const provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com');
-      // 'https://rpc-.maticvigil.com/'
-    // 'https://rpc-mumbai.matic.today'
-    // https://polygon-mumbai.g.alchemy.com/v2/2bGIFu-iEnl9RvAOTe1ddZI2gBnuYQGS'
-    // 'https://rpc-mumbai.matic.today'
-    // ' https://rpc-mumbai.maticvigil.com/'
-    // 'https://kovan.infura.io/v3/745fcbe1f649402c9063fa946fdbb84c'
-    // 'https://rpc-mumbai.maticvigil.com'
-    // 'https://kovan.infura.io/v3/745fcbe1f649402c9063fa946fdbb84c'
-    // 'https://kovan.infura.io/v3/745fcbe1f649402c9063fa946fdbb84c'
+    const providerss = await web3Modal.connect();
+    const web3Provider = new providers.Web3Provider(providerss);
+    const network = (await web3Provider.getNetwork()) as any;
+    
+    let contractAddress: string;
+    let rpcUrl: string | ethers.utils.ConnectionInfo | undefined;
+  
+    if (network.chainId === 43113) {
 
+      contractAddress = AvaAddress;
+      rpcUrl = 'https://api.avax-test.network/ext/bc/C/rpc';
+    } else {
+      contractAddress = ArbAddress;
+      rpcUrl = 'https://goerli-rollup.arbitrum.io/rpc';
+    }
+  
+    // Create a generic provider and query for unsold market items
+    const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+  
     const contract = new ethers.Contract(
-      destoreAddress,
-      destoreContract.abi,
+      contractAddress,
+      SecureMate.abi,
       provider
     );
-
+  
     const { chainId } = await provider.getNetwork();
     if (chainId) {
       dispatch({
         type: 'SET_CONTRACT',
         contract: contract,
       });
-
+  
       // const data = await contract.donationCount();
     } else {
       window.alert('Donation contract not deployed to detected network');
     }
   }
+  
 
   const connect = useCallback(async function () {
-    // console.log('button of connect clicked');
-
-    // This is the initial `provider` that is returned when
-    // using web3Modal to connect. Can be MetaMask or WalletConnect.
     const provider = await web3Modal.connect();
-
-    // We plug the initial `provider` into ethers.js and get back
-    // a Web3Provider. This will add on methods from ethers.js and
-    // event listeners such as `.on()` will be different.
-
     const web3Provider = new providers.Web3Provider(provider);
     const signer = web3Provider.getSigner() as any;
     const address = await signer.getAddress();
+    // saving the address to local storage
+    localStorage.setItem('address', address);
     const network = (await web3Provider.getNetwork()) as any;
+      
 
-    // console.log(signer);
+  //   if (network.chainId === 43113 || network.chainId === 421613) {
+  //       // const ssx = new SSX({
+  //       //   resolveEns: {
+  //       //     resolveOnServer: false, // false as default
+  //       //     resolve: {
+  //       //       domain: true,
+  //       //       avatar: true
+  //       //     }
+  //       //   }
+  //       // });
+  //     } else {
+  //     const customChainConfig = {
+  //       chainId: "0xa869", // Chain ID of Avalanche Fuji Testnet
+  //       chainName: "Avalanche Fuji Testnet",
+  //       nativeCurrency: {
+  //         name: "avalanche",
+  //         symbol: "AVAX",
+  //         decimals: 18,
+  //       },
+  //       rpcUrls: ["https://rpc.ankr.com/avalanche_fuji"],
+  //       blockExplorerUrls: ["https://testnet.snowtrace.io/"],
+  //     };
+
+  //     try {
+  //       // Attempt to switch to the custom Avalanche network
+  //       await web3Provider.send("wallet_switchEthereumChain", [
+  //         {
+  //           chainId: customChainConfig.chainId,
+  //         },
+  //       ]);
+  //       alert('Switched to Avalanche testnet... Please  Reconnect');
+  //    window.location.reload();
+  //     } catch (switchError) {
+  //       // If switching network failed, add the custom network
+  //       await web3Provider.send("wallet_addEthereumChain", [customChainConfig]);
+  //       window.location.reload();
+  //       alert('Added to Avalanche testnet... Please  Reconnect');
+
+
+
 
     dispatch({
       type: 'SET_WEB3_PROVIDER',
@@ -259,6 +296,7 @@ const AuthProvider = ({ children }) => {
       chainId: network.chainId,
     });
   }, []);
+
 
   const disconnect = useCallback(
     async function () {
@@ -297,8 +335,8 @@ const AuthProvider = ({ children }) => {
 
       const signer_ = web3Provider.getSigner();
       const signer = new ethers.Contract(
-        destoreAddress,
-        destoreContract.abi,
+        AvaAddress,
+        SecureMate.abi,
         signer_
       );
 
@@ -329,7 +367,7 @@ const AuthProvider = ({ children }) => {
         }
       };
     }
-  }, [provider, disconnect]);
+  }, [provider, disconnect, web3Provider]);
 
   const chainData = getChainData(chainId);
 

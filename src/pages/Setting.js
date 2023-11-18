@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useContext } from "react";
 import { WindmillContext } from "@windmill/react-ui";
 import PageTitle from "../components/Typography/PageTitle";
@@ -5,26 +6,13 @@ import { SidebarContext } from "../context/SidebarContext";
 import { MoonIcon, SunIcon } from "../icons";
 import { Input } from "@windmill/react-ui";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
-import { useMoralis, useMoralisQuery } from "react-moralis";
 
 function Settings() {
-  const { isAuthenticated, logout, authenticate, user, Moralis, setUserData } =
-    useMoralis();
+ 
 
   const { mode, toggleMode } = useContext(WindmillContext);
   const { toggleSidebar } = useContext(SidebarContext);
-  const [username, setusername] = useState("");
-  const onChangeUserName = () => {
-    if (username === "") {
-      return;
-    }
-    setUserData({
-      username: username,
-    }).then((res) => {
-      setusername("");
-      alert("Name changed");
-    });
-  };
+  
   return (
     <>
       <PageTitle>Settings</PageTitle>
@@ -48,26 +36,9 @@ function Settings() {
           </div>
         )}
       </div>
-
-      <p className="dark:text-white pb-2">User Profile Name</p>
+      <p className="dark:text-white pb-2">Connected Wallet</p>
       <hr />
-      <div className="flex flex-row mt-3  items-center">
-        <Input
-          className="focus:ring-0 focus:border-transparent"
-          placeholder="change username"
-          onChange={(e) => {
-            setusername(e.target.value);
-          }}
-          value={username}
-        />
-        <div
-          onClick={() => {
-            onChangeUserName();
-          }}
-        >
-          <CheckCircleIcon className="h-6 dark:text-gray-200" />
-        </div>
-      </div>
+Todo : Add wallet connect
     </>
   );
 }

@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import Container from "./container";
-import heroImg from "../../public/img/productify-logo.svg";
+import heroImg from "../../assets/logo.png";
 
 export default function Footer() {
-  const navigation = ["Product", "NFT", "Chat"];
+  const navigation = ["Product", "DATING","NFT", "Chat","FINANCE"];
   return (
     <div className="relative">
       <Container>
@@ -22,25 +25,17 @@ export default function Footer() {
                     className="w-8"
                   />
                 </span>
-                <span>Destore</span>
+                <span>SecureMate</span>
               </a>
               {/* </Link> */}
             </div>
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              Destore a decentralise storage online Platforms with NFT and
-              Chatting capabilities. Users can store their data on IPFS or Web3
-              Storage. Users can access files directly through web browser
-              without using any third party software.
-              <br></br>
-              <br></br>
-              <p>
-                It has been implemented in order to reduce the dependency on
-                centralized services like Dropbox and Google Drive where users
-                are dependent on a single point of failure. It will give you
-                complete control over your data, right from its inception.
-              </p>
-            </div>
+  SecureMate is an advanced dating platform that redefines online connections through its unique blend of decentralized storage, NFT integration, and chat capabilities. Users on SecureMate can securely store their personal data using Web3 Storage, with data seamlessly linked through Spruce ID for enhanced security and privacy. This enables users to effortlessly access their files directly via web browsers, eliminating the need for third-party software.
+  <br /><br />
+  Our platform is purpose-built to revolutionize the dating landscape by offering a decentralized alternative to centralized services like Dropbox and Google Drive. This empowers users with complete autonomy over their data, eliminating concerns related to a single point of failure and granting control over data right from its inception.
+</div>
+
           </div>
 
           <div>
@@ -57,17 +52,6 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          {/* <div>
-            <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-              {legal.map((item, index) => (
-                // <Link key={index} href="/">
-                <a className="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700">
-                  {item}
-                </a>
-                // </Link>
-              ))}
-            </div>
-          </div> */}
           <div className="">
             <div className="text-cool-gray-50">Follow me</div>
             <div className="flex mt-5 space-x-5 text-gray-400 dark:text-gray-500">
@@ -88,6 +72,16 @@ export default function Footer() {
               >
                 <span className="sr-only">Linkedin</span>
                 <Linkedin />
+              </a>
+            </div>
+            <div className="flex mt-5 space-x-5 text-gray-400 dark:text-gray-500">
+              <a
+                href="https://instagram.com/myself_sambit"
+                target="_blank"
+                rel="noopener"
+              >
+                <span className="sr-only">Instagram</span>
+                <Instagram />
               </a>
             </div>
           </div>

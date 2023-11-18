@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // import Head from "next/head";
 import Hero from "../components/index/hero";
 import Navbar from "../components/index/navbar";
@@ -18,13 +19,13 @@ export default function Home() {
         <Navbar />
         <Hero />
         <SectionTitle
-          pretitle="Destore Benefits"
-          title=" Why should you use Destore"
+          pretitle="SecureMate Benefits"
+          title=" Why should you use SecureMate"
         ></SectionTitle>
         <Benefits data={benefitOne} />
         <Benefits imgPos="right" data={benefitTwo} />
-        <SectionTitle pretitle="about" title="Learn more about destore">
-          Destore a decentralise storage online Platforms with NFT and
+        <SectionTitle pretitle="about" title="Learn more about SecureMate">
+          SecureMate a decentralise storage online Platforms with NFT and
           Chatting capabilities. Users can store their data on IPFS or Web3
           Storage. Users can access files directly through web browser without
           using any third party software.

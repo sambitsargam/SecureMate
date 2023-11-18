@@ -1,36 +1,39 @@
-import React, { useContext, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React, { useContext, useEffect, useState } from "react";
 import { SidebarContext } from "../context/SidebarContext";
 import { AuthContext } from "../utils/AuthProvider";
 import { Button } from "@nextui-org/react";
 import { SearchIcon, MoonIcon, SunIcon, MenuIcon } from "../icons";
 import { Input, WindmillContext } from "@windmill/react-ui";
-import Emojicons from "../pages/Emojicons";
-import { useMoralis, useMoralisQuery } from "react-moralis";
 
 function Header() {
   const { mode, toggleMode } = useContext(WindmillContext);
   const { toggleSidebar } = useContext(SidebarContext);
-  const { address, signer, connect, disconnect, web3Provider } =
+  const { address, connect, disconnect, web3Provider } =
     useContext(AuthContext);
-  const { user } = useMoralis();
-  let userprofile_ = JSON.parse(localStorage.getItem("userprofile"));
-  let username;
-  if (!user?.getUsername()) {
-    username = "me";
-  }
-  const [isNotificationsMenuOpen, setIsNotificationsMenuOpen] = useState(false);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
-  function handleNotificationsClick() {
-    setIsNotificationsMenuOpen(!isNotificationsMenuOpen);
-  }
+  const [avatar, setAvatar] = useState('');
+  const [ens, setENS] = useState('');
 
-  let userprofile = JSON.parse(localStorage.getItem("userprofile"));
+  //fetch the address from local storage
+  const addr = localStorage.getItem("address");
+  const apiUrl = `https://ensdata.net/${addr}`;
 
-  console.log(userprofile);
-  function handleProfileClick() {
-    setIsProfileMenuOpen(!isProfileMenuOpen);
-  }
+  useEffect(() => {
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        setAvatar(data.avatar);
+        setENS(data.ens);
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  console.log("avatar", avatar);
+  console.log("ens", ens);
 
   return (
     <header className="z-30 w-full py-4 bg-white shadow-bottom dark:bg-gray-800">
@@ -71,17 +74,29 @@ function Header() {
               )}
             </button>
           </li>
+          
+
+          {avatar === undefined || !address ? (
+              <img
+                class=" hidden md:block  w-10 h-10 rounded-full shadow-lg"
+                src={"https://api.dicebear.com/6.x/personas/svg?seed=Misty"}
+                alt="Bonnie image"
+              />
+            ) : (
+              <img
+                class=" hidden md:block  w-10 h-10 rounded-full shadow-lg"
+                src={avatar}
+                alt="Bonnie image"
+              />
+            )}
+          {ens === undefined || !address ? (<div className="text-gray-600 text-xl dark:text-gray-300">{address} </div>) :
+              (<div className="text-gray-600 text-xl dark:text-gray-300">
+                {ens}
+              </div>)}
+
           <li className="flex flex-row items-center">
             {web3Provider ? (
-              // <div
-              //   className=" bg-gradient-to-r from-cyan-500 to-blue-500 px-4 md:px-6  md:py-3 py-2 rounded-md cursor-pointer text-white"
-              //   onClick={() => {
-              //     disconnect();
-              //   }}
-              // >
-              //   Disconnect
-              // </div>
-
+             
               <Button
                 onClick={() => {
                   disconnect();
@@ -92,6 +107,7 @@ function Header() {
               >
                 Disconnect
               </Button>
+              
             ) : (
               <Button
                 onClick={() => {
@@ -105,17 +121,7 @@ function Header() {
               </Button>
             )}
 
-            {userprofile === null || userprofile[2] === "" ? (
-              <div class=" hidden md:flex items-center justify-center h-10 w-10 rounded-full bg-blue-300 flex-shrink-0">
-                <Emojicons username={user?.getUsername()} />
-              </div>
-            ) : (
-              <img
-                class=" hidden md:block  w-10 h-10 rounded-full shadow-lg"
-                src={userprofile[2]}
-                alt="Bonnie image"
-              />
-            )}
+            
           </li>
         </ul>
       </div>
@@ -123,4 +129,6 @@ function Header() {
   );
 }
 
+
 export default Header;
+

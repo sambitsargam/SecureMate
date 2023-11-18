@@ -1,1 +1,2 @@
-export const destoreAddress = "0x8628d91E8311B4856ae7d3E317a0E8fFf48E0f98";
+export const AvaAddress = "0x4dC1322286D150242fAaA5515Fbcdf8EfADFC900";
+export const ArbAddress = "0x375F30575f60b3473496a978ad7C04dF94B0ECD4";

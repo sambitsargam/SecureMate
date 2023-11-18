@@ -1,57 +1,54 @@
+import React from "react";
 import {
   ChartBarSquareIcon,
   CursorArrowRippleIcon,
   DevicePhoneMobileIcon,
   AdjustmentsVerticalIcon,
   SunIcon,
-  FaceSmileIcon,
+  IdentificationIcon,
 } from "@heroicons/react/24/outline";
+import benefitTwoImg from "../../assets/2.svg";
+import benefitOneImg from "../../assets/3.svg";
 
-import benefitOneImg from "../../public/img/benefit-one.png";
-import benefitTwoImg from "../../public/img/benefit-two.png";
-import fdfs from "../../";
 const benefitOne = {
-  title: "Storage",
-  // desc: "ou have the freedom to choose whether to store your data on IPFS or Web3 storage.",
-
+  title: "Dating",
   image: benefitTwoImg,
   bullets: [
     {
-      title: "File manager",
-      desc: "Directly browse your files from anywhere in the world",
-      icon: <FaceSmileIcon />,
+      title: "Connect with Others",
+      desc: "Find and connect with potential partners.",
+      icon: <IdentificationIcon />,
     },
     {
-      title: "Sharing",
-      desc: "Easily share files with friends and family.",
+      title: "Verified Profiles",
+      desc: "Profiles linked through  Ens Domain for added authenticity.",
       icon: <ChartBarSquareIcon />,
     },
     {
-      title: "Mobile compatible",
-      desc: "Access your files anytime and anywhere",
+      title: "Secure Chats",
+      desc: "Enjoy private conversations with verified users.",
       icon: <CursorArrowRippleIcon />,
     },
   ],
 };
 
 const benefitTwo = {
-  title: "And even more with Destore...",
-  // desc: "It is secure and unchangeable because of the use of blockchain. indicating that nobody can manipulate your data",
+  title: "And even more with SecureMate...",
   image: benefitOneImg,
   bullets: [
     {
       title: "NFT Token",
-      desc: "Mint NFT directly from files saved on Destore ",
+      desc: "Mint NFT directly from files saved on SecureMate ",
       icon: <DevicePhoneMobileIcon />,
     },
     {
       title: "Chat",
-      desc: "Send  messages with anyone you want using destore",
+      desc: "Send messages with anyone you want using SecureMate but you have to pay for it.",
       icon: <AdjustmentsVerticalIcon />,
     },
     {
       title: "Hybrid Storage ",
-      desc: "You can host both IPFS and Web3storage servers for free. ",
+      desc: "You can host Web3storage servers and Linked throgh Spruce id's Kepler for free. ",
       icon: <SunIcon />,
     },
   ],

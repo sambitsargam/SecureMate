@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 /**
  * ⚠ These are used just to render the Sidebar!
@@ -33,9 +34,9 @@ const routes = [
     name: " Storage",
   },
   {
-    path: "/app/community",
+    path: "/app/finance",
     icon: <UserGroupIcon className="h-6" />,
-    name: "Community",
+    name: "Finance",
   },
   {
     path: "/app/chat",
