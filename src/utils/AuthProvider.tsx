@@ -354,7 +354,7 @@ const AuthProvider = ({ children }) => {
 
       const signer_ = web3Provider.getSigner();
       const signer = new ethers.Contract(
-        MntAddress,
+        NeonAddress,
         SecureMate.abi,
         signer_
       );
