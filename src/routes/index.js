@@ -11,6 +11,7 @@ const NFTDashboard = lazy(() => import("../pages/NFTDashboard"));
 const Page404 = lazy(() => import("../pages/404"));
 const Blank = lazy(() => import("../pages/Blank"));
 const Group = lazy(() => import("../pages/GroupChat"));
+const  ProfileFetcher = lazy(() => import("../pages/Lookup"));
 /**
  * ⚠ These are internal routes!
  * They will be rendered inside the app, using the default `containers/Layout`.
@@ -30,6 +31,10 @@ const routes = [
   //   path: "/favorite",
   //   component: Favorite,
   // },
+  {
+    path: "/lookup",
+    component: ProfileFetcher,
+  },
   {
     path: "/setting",
     component: Setting,

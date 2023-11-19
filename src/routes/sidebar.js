@@ -15,7 +15,7 @@ import {
   UserGroupIcon,
   ChatBubbleLeftRightIcon,
   ChatBubbleLeftEllipsisIcon,
-  SparklesIcon,
+  MagnifyingGlassCircleIcon,
 } from "@heroicons/react/24/outline";
 const routes = [
   {
@@ -72,6 +72,11 @@ const routes = [
         name: "Dashboard",
       },
     ],
+  },
+  {
+    path: "/app/lookup",
+    icon: <MagnifyingGlassCircleIcon className="h-6" />,
+    name: "Lookup",
   },
   {
     path: "/app/setting",
