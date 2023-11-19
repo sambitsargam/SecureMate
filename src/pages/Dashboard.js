@@ -19,7 +19,7 @@ import { AuthContext } from "../utils/AuthProvider";
 import PageTitle from "../components/Typography/PageTitle";
 import SectionTitle from "../components/Typography/SectionTitle";
 import CTA from "../components/CTA";
-import {} from "@windmill/react-ui";
+import { } from "@windmill/react-ui";
 import PONK from "../assets/img/irupus.png";
 import { ellipseAddress } from "../lib/utilities";
 import { IDKitWidget } from '@worldcoin/idkit';
@@ -80,12 +80,12 @@ function Buttons() {
 
   // function to enable a button 
   // function to enable a button 
-function enableButton() {
-  const chatButton = document.getElementById("chat");
-  if (chatButton) {
-    chatButton.removeAttribute("disabled");
+  function enableButton() {
+    const chatButton = document.getElementById("chat");
+    if (chatButton) {
+      chatButton.removeAttribute("disabled");
+    }
   }
-}
 
 
   async function isUserRegistered() {
@@ -121,10 +121,10 @@ function enableButton() {
   }
 
   // check the user have lens profile or not 
-async function checkLensProfile(addrs) {
-  const userDetails = await getDetails(addrs);
-  return userDetails.platform.toLowerCase() === "lens";
-}
+  async function checkLensProfile(addrs) {
+    const userDetails = await getDetails(addrs);
+    return userDetails.platform.toLowerCase() === "lens";
+  }
 
 
   const onAddProfile = async () => {
@@ -156,12 +156,12 @@ async function checkLensProfile(addrs) {
 
   const chatamount = "1";
   const onChatUser = async (add) => {
-     const amount_ = ethers.utils.parseUnits(chatamount, "ether");
-     let transaction = await signer.tipUser(userid, {
-       value: amount_,
-     });
-     setisloading(true);
-     let txReceipt = await transaction.wait();
+    const amount_ = ethers.utils.parseUnits(chatamount, "ether");
+    let transaction = await signer.tipUser(userid, {
+      value: amount_,
+    });
+    setisloading(true);
+    let txReceipt = await transaction.wait();
     // now send the user data and current address to the backend's api
     const apiUrl = `https://feedback-2087f-default-rtdb.firebaseio.com/chat.json`;
     const response = await fetch(apiUrl, {
@@ -353,16 +353,16 @@ async function checkLensProfile(addrs) {
       </Modal>
       <PageTitle>Available Profiles</PageTitle>
       <IDKitWidget
-  app_id="app_staging_820778815cfb1ce281fbb271f61e6cd1"
-  action="vote_1"
-  signal="user_value"
-  onSuccess={enableButton} // use the function reference without calling it
-  credential_types={['orb', 'phone']}
-  enableTelemetry
->
-  {({ open }) => <Button onClick={open}>Verify with World ID to Chat</Button>}
-</IDKitWidget>
-<br></br>
+        app_id="app_staging_820778815cfb1ce281fbb271f61e6cd1"
+        action="vote_1"
+        signal="user_value"
+        onSuccess={handleWorldIdSignInSuccess} // Step 2: Handle World ID sign-in success
+        credential_types={['orb', 'phone']}
+        enableTelemetry
+      >
+        {({ open }) => <Button onClick={open}>Verify with World ID to Chat</Button>}
+      </IDKitWidget>
+      <br></br>
 
 
       <form className="mb-4">
@@ -465,17 +465,18 @@ async function checkLensProfile(addrs) {
                   </button>
                 </li>
                 <li>
-                  <button
-                    className="inline-block px-3 py-1 text-xxl font-semibold text-white bg-blue-600 rounded-full"
-                    onClick={() => {
-                      onChatUser(user._address);
-                      setuserid(user.id.toString());
-                    }}
-                    id="chat"
-                    
-                  >
-                    Chat
-                  </button>
+                  {worldIdSignIn && ( // Step 3: Conditionally render the chat button
+                    <button
+                      className="inline-block px-3 py-1 text-xxl font-semibold text-white bg-blue-600 rounded-full"
+                      onClick={() => {
+                        onChatUser(user._address);
+                        setuserid(user.id.toString());
+                      }}
+                      id="chat"
+                    >
+                      Chat
+                    </button>
+                  )}
                 </li>
               </ul>
               <p className="mt-2 text-sm text-gray-500 dark:text-gray-200">
