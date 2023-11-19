@@ -12,6 +12,7 @@ const Page404 = lazy(() => import("../pages/404"));
 const Blank = lazy(() => import("../pages/Blank"));
 const Group = lazy(() => import("../pages/GroupChat"));
 const  ProfileFetcher = lazy(() => import("../pages/Lookup"));
+const Message = lazy(() => import("../pages/Message"));
 /**
  * ⚠ These are internal routes!
  * They will be rendered inside the app, using the default `containers/Layout`.
@@ -31,6 +32,10 @@ const routes = [
   //   path: "/favorite",
   //   component: Favorite,
   // },
+  {
+    path: "/message",
+    component: Message,
+    },
   {
     path: "/lookup",
     component: ProfileFetcher,

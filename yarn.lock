@@ -2191,7 +2191,7 @@
   dependencies:
     "@ethersproject/logger" "^5.7.0"
 
-"@ethersproject/providers@5.7.2":
+"@ethersproject/providers@^5.7.2", "@ethersproject/providers@5.7.2":
   version "5.7.2"
   resolved "https://registry.npmjs.org/@ethersproject/providers/-/providers-5.7.2.tgz"
   integrity sha512-g34EWZ1WWAVgr4aptGlVBF8mhl3VWjv+8hoAnzStu8Ah22VHBsuGzP17eb6xDVRzw895G4W7vvx60lFFur/1Rg==
@@ -3527,6 +3527,41 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@nucypher/nucypher-contracts@^7.0.0-rc.1":
+  version "7.0.0-rc.2"
+  resolved "https://registry.npmjs.org/@nucypher/nucypher-contracts/-/nucypher-contracts-7.0.0-rc.2.tgz"
+  integrity sha512-xubksHKI4eOGxQwFEPQfdIium3Z5jRqJqgEZwu7Ss1aM83dYjc91NC3QohsB9shG0KK/XMQ3n1P6WPVQMfGi0Q==
+
+"@nucypher/nucypher-core@0.13.0-alpha.1":
+  version "0.13.0-alpha.1"
+  resolved "https://registry.npmjs.org/@nucypher/nucypher-core/-/nucypher-core-0.13.0-alpha.1.tgz"
+  integrity sha512-uKu/YLTZ6mqkQ2kaQMJs/USUiw9EYFtaZU6FaD8zAN8XKLpHYuYD13BDfU7idR1nZIKjL/E5xIoVJFV3Dx0x2w==
+
+"@nucypher/shared@0.1.0-rc.4":
+  version "0.1.0-rc.4"
+  resolved "https://registry.npmjs.org/@nucypher/shared/-/shared-0.1.0-rc.4.tgz"
+  integrity sha512-fA6vnSEK0RyVapRBkq3ntmG8JaE26rADuOB2DCVgHhtqpLEzcHfWopaYiz9Ijfl2v+wVDISu+T08h/tKThuCsg==
+  dependencies:
+    "@ethersproject/abi" "^5.7.0"
+    "@ethersproject/providers" "^5.7.2"
+    "@nucypher/nucypher-contracts" "^7.0.0-rc.1"
+    "@nucypher/nucypher-core" "0.13.0-alpha.1"
+    axios "^1.5.0"
+    deep-equal "^2.2.1"
+    ethers "^5.7.2"
+    qs "^6.10.1"
+
+"@nucypher/taco@^0.1.0-rc.6":
+  version "0.1.0-rc.6"
+  resolved "https://registry.npmjs.org/@nucypher/taco/-/taco-0.1.0-rc.6.tgz"
+  integrity sha512-qVQ1WpYOG8nWoDR+aFEzTKawshiow4j6aOXjZqYTJcGT7hkalcpxPIhl1WcZP4wIIO+f4q54D/7qh8XvaBSGxg==
+  dependencies:
+    "@ethersproject/abstract-signer" "^5.7.0"
+    "@nucypher/nucypher-core" "0.13.0-alpha.1"
+    "@nucypher/shared" "0.1.0-rc.4"
+    semver "^7.5.2"
+    zod "^3.22.4"
 
 "@octokit/auth-token@^2.4.4":
   version "2.5.0"
@@ -7979,6 +8014,15 @@ axios@^1.2.1:
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
+axios@^1.5.0:
+  version "1.6.2"
+  resolved "https://registry.npmjs.org/axios/-/axios-1.6.2.tgz"
+  integrity sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==
+  dependencies:
+    follow-redirects "^1.15.0"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
 axobject-query@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/axobject-query/-/axobject-query-2.2.0.tgz"
@@ -11363,7 +11407,7 @@ dedent@^0.7.0, dedent@0.7.0:
   resolved "https://registry.npmjs.org/dedent/-/dedent-0.7.0.tgz"
   integrity sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==
 
-deep-equal@^2.0.5:
+deep-equal@^2.0.5, deep-equal@^2.2.1:
   version "2.2.3"
   resolved "https://registry.npmjs.org/deep-equal/-/deep-equal-2.2.3.tgz"
   integrity sha512-ZIwpnevOurS8bpT4192sqAowWM76JDKSHYzMLty3BZGSswgq6pBaH3DhCSW5xVAZICZyKdOBPjwww5wfgT/6PA==
@@ -22328,7 +22372,7 @@ qrcode@1.5.3:
     pngjs "^5.0.0"
     yargs "^15.3.1"
 
-qs@^6.10.3, qs@^6.9.4, qs@6.11.0:
+qs@^6.10.1, qs@^6.10.3, qs@^6.9.4, qs@6.11.0:
   version "6.11.0"
   resolved "https://registry.npmjs.org/qs/-/qs-6.11.0.tgz"
   integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==
@@ -28724,6 +28768,11 @@ zip-stream@^4.1.0:
     archiver-utils "^2.1.0"
     compress-commons "^4.1.0"
     readable-stream "^3.6.0"
+
+"zod@^3 >=3.19.1", zod@^3.22.4:
+  version "3.22.4"
+  resolved "https://registry.npmjs.org/zod/-/zod-3.22.4.tgz"
+  integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==
 
 zustand@^4.3.1, zustand@^4.3.3:
   version "4.4.6"
